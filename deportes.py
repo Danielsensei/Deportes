@@ -27,9 +27,9 @@ class Jugador():
     def get_equipo (self):
         return self.__equipo
     def set_puntosdeliga (self,puntosdeliga):
-        self._puntosdeliga=puntosdeliga
+        self.__puntosdeliga=puntosdeliga
     def get_puntosdeliga (self):
-        return self._puntosdeliga
+        return self.__puntosdeliga
 class Futbol(Jugador):
     def __init__(self,nombre,edad,DNI,altura,equipo,puntosdeliga,posicionfutbol):
         self.__posicionfutbol=posicionfutbol
@@ -100,6 +100,7 @@ def mostrar():
         print(jugador.get_DNI())
         print(jugador.get_altura())
         print(jugador.get_equipo())
+        print(jugador.get_puntosdeliga())
         if jugador.get_posicionfutbol()=="futbol":
             print(jugador.get_posicionfutbol())
         elif jugador.get_posicionbaloncesto()=="baloncesto":
@@ -118,4 +119,34 @@ def esMayorDeEdad():
         else:
             print ("El jugador o jugadora es menor de edad")
 if __name__=="__main__":
-    main()
+    jugadores={}
+    z="si"
+    while z.lower()=="si":
+        jugador=()
+        nombre=input("Introduce el nombre del jugador:")
+        edad=int(input("Introduce la edad del jugador:"))
+        DNI=input("Introduce el DNI del jugador:")
+        altura=input("Introduce la altura del jugador:")
+        equipo=input("Introduce el equipo al que pertenece:")
+        puntosdeliga=input("Introduce la cantidad de puntos que tiene el jugador:")
+        a=input("¿A que tipo de deporte pertenece:futbol, baloncesto, voleibol o taekwondo?")
+        if a.lower()=="futbol":
+            posicionfutbol=input("Introduce la posicion que ocupa el jugador dentro del campo:")
+            jugador=Futbol(nombre,edad,DNI,altura,equipo,puntosdeliga,posicionfutbol)
+            jugador.set_futbol(posicionfutbol)
+        elif a.lower()=="baloncesto":
+            posicionbaloncesto=input("Introduce la posicion que ocupa el jugador dentro de la cancha:")
+            jugador=Baloncesto(nombre,edad,DNI,altura,equipo,puntosdeliga,posicionbaloncesto)
+            jugador.set_baloncesto(posicionbaloncesto)
+        elif a.lower()=="voleibol":
+            clase=input("Introduce la clase del jugador:")
+            jugador=Voleibol(nombre,edad,DNI,altura,equipo,puntosdeliga,clase)
+            jugador.set_voleibol(clase)
+        elif a.lower()=="taekwondo":
+            cinturon=input("Introduce el cinturon del jugador:")
+            jugador=Taekwondo(nombre,edad,DNI,altura,equipo,puntosdeliga,cinturon)
+            jugador.set_taekwondo(cinturon)
+        jugadores.append(jugador)
+        z=input("¿Quires introducir a otro jugador?")
+    mostrar()
+    esMayorDeEdad()
